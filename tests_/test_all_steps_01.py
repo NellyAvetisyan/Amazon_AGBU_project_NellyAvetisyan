@@ -20,9 +20,9 @@ sleep(6)
 loginPageObj.click_signin_button()
 
 navigationBarObj = NavigationBar(driver)
-navigationBarObj.click_to_navigation_bar()
+navigationBarObj.click_to_cart_button()
 
 cartPageObj = CartPage(driver)
-cartPageObj.delete_first_item()
+cartPageObj.delete_first_product()
 
 driver.close()
