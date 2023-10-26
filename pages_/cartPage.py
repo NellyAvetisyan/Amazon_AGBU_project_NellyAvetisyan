@@ -6,6 +6,6 @@ class CartPage(BasePage):
     def __init__(self, driver):
         self.driver = driver
 
-    def delete_first_item(self):
-        firstItemDeleteButton = self._find_element(By.XPATH, "(//input[@value='Delete'])[1]")
-        self._click(firstItemDeleteButton)
+    def delete_first_product(self):
+        firstProductDeleteButton = self._find_element(By.XPATH, "(//input[@value='Delete'])[1]")
+        self._click(firstProductDeleteButton)
