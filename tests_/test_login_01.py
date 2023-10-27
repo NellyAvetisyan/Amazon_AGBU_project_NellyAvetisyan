@@ -4,7 +4,7 @@ from pages_.loginPage import LoginPage
 from time import sleep
 
 
-class LogIn(unittest.Testcase):
+class LogIn(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
