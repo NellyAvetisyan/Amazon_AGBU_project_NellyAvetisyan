@@ -2,6 +2,7 @@ from selenium import webdriver
 from pages_.loginPage import LoginPage
 from pages_.navigationBar import NavigationBar
 from pages_.cartPage import CartPage
+from pages_.searchResultPage import SearchResultPage
 from time import sleep
 
 driver = webdriver.Chrome()
@@ -24,5 +25,11 @@ navigationBarObj.click_to_cart_button()
 
 cartPageObj = CartPage(driver)
 cartPageObj.delete_first_product()
+
+navigationBarObj.fill_search_field("candle")
+navigationBarObj.click_to_search_submit_button()
+
+searchResultPaeObj = SearchResultPage(driver)
+searchResultPaeObj.click_to_first_product()
 
 driver.close()

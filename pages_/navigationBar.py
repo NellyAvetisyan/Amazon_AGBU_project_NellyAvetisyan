@@ -9,3 +9,11 @@ class NavigationBar(BasePage):
     def click_to_cart_button(self):
         cartButtonElement = self._find_element(By.ID, "nav-cart-text-container")
         self._click(cartButtonElement)
+
+    def fill_search_field(self, product):
+        searchFieldElement = self._find_element(By.ID, "twotabsearchtextbox")
+        self._fill_field(searchFieldElement, product)
+
+    def click_to_search_submit_button(self):
+        searchSubmitButton = self._find_element(By.ID, "nav-search-submit-button")
+        self._click(searchSubmitButton)
