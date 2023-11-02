@@ -2,10 +2,10 @@ import unittest
 from selenium import webdriver
 from pages_.loginPage import LoginPage
 from pages_.navigationBar import NavigationBar
-from pages_.cartPage import CartPage
-from pages_.searchResultPage import SearchResultPage
+# from pages_.cartPage import CartPage
+from pages_.bestSellersResultPage import BestSellersResultPage
+from pages_.selectedProductPage import SelectedProductPage
 from time import sleep
-
 
 class TestAllSteps(unittest.TestCase):
     def setUp(self):
@@ -23,19 +23,23 @@ class TestAllSteps(unittest.TestCase):
         sleep(10)
         # to avoid CAPTCHA check
         loginPageObj.click_signin_button()
-    def test_steps_to_check_func(self):
 
-        navigationBarObj = NavigationBar(self.driver)
-        navigationBarObj.click_to_cart_button()
+    def test_add_to_cart_from_best_sellers_first_product(self):
+        NavigationBarObj = NavigationBar(self.driver)
+        NavigationBarObj.click_to_all_button()
+        NavigationBarObj.click_to_best_sellers_button()
 
-        cartPageObj = CartPage(self.driver)
-        cartPageObj.delete_first_product()
+        BestSellersResultPageObj = BestSellersResultPage(self.driver)
+        BestSellersResultPageObj.click_to_first_product()
 
-        navigationBarObj.fill_search_field("candle")
-        navigationBarObj.click_to_search_submit_button()
+        SelectedProductPageObj = SelectedProductPage(self.driver)
+        SelectedProductPageObj.click_add_to_cart_button()
+        sleep(10)
 
-        searchResultPaeObj = SearchResultPage(self.driver)
-        searchResultPaeObj.click_to_first_product()
+        # self.assertGreater
 
-    def tearDown(self):
-        self.driver.close()
+
+
+
+
+

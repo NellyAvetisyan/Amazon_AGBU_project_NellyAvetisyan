@@ -22,18 +22,8 @@ class BasePage():
         webElement.clear()
         webElement.send_keys(text)
 
-    def _get_element_text(self, webElement,):
-        webElement.text()
-
     def _get_title(self):
         return self.driver.title
 
-
-
-
-
-
-
-
-
-
+    def _get_element_text(self, webElement):
+        webElement.text

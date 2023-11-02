@@ -3,8 +3,8 @@ from pages_.basePage import BasePage
 
 class NavigationBar(BasePage):
 
-    def __init__(self, driver):
-        self.driver = driver
+    # def __init__(self, driver):
+    #     self.driver = driver
 
     def click_to_cart_button(self):
         cartButtonElement = self._find_element(By.ID, "nav-cart-text-container")
@@ -17,3 +17,14 @@ class NavigationBar(BasePage):
     def click_to_search_submit_button(self):
         searchSubmitButton = self._find_element(By.ID, "nav-search-submit-button")
         self._click(searchSubmitButton)
+
+    def click_to_all_button(self):
+        allButtonElement = self._find_element(By.ID, "nav-hamburger-menu")
+        self._click(allButtonElement)
+
+    def click_to_best_sellers_button(self):
+        bestSellersButtonElement = self._find_element(By.XPATH, "(//a[@class ='hmenu-item'])[1]")
+        self._click(bestSellersButtonElement)
+
+    # def click_to_cart_count_element(self):
+    #     coart
