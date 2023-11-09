@@ -2,7 +2,6 @@ import logging
 from datetime import date
 import os
 from pathlib import Path
-import inspect
 
 def get_root_dir_name():
     command = "Path(__file__).absolute()"
@@ -18,7 +17,7 @@ def logger(level, message, fileName=os.path.join(get_root_dir_name(), '_logs_', 
     logging.basicConfig(level=logging.INFO, filename=fileName, filemode="a",
                         format="%(asctime)-12s %(levelname)s %(message)s",
                         datefmt="%d-%m-%Y %H:%M:%S")
-    # print(os.path.join(get_root_dir_name(), '_logs_', f'log_{date.today()}.log'))
+
     if level == "INFO":
         logging.info(message)
         return
@@ -35,11 +34,3 @@ def logger(level, message, fileName=os.path.join(get_root_dir_name(), '_logs_', 
         logging.critical(message)
         return
 
-
-def logg(function):
-    def wrapper(*args):
-        logger("INFO", f"Calling <{inspect.stack()[0][3]}> method")
-        function(*args)
-        logger("INFO", f"Finished <{inspect.stack()[0][3]}> method")
-
-    return wrapper
