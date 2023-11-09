@@ -29,5 +29,7 @@ class LogIn(unittest.TestCase):
         loginPageObj.fill_password_button("12345678")
         loginPageObj.click_signin_button()
 
+        self.assertEquals(self.driver.title, )
+
     def tearDown(self):
         self.driver.close()

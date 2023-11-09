@@ -36,9 +36,10 @@ class TestAllSteps(unittest.TestCase):
         SelectedProductPageObj.click_add_to_cart_button()
         sleep(10)
 
-        # self.assertGreater
 
 
+    def tearDown(self):
+        self.driver.close()
 
 
 
