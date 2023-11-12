@@ -21,7 +21,7 @@ class LogIn(unittest.TestCase):
         loginPageObj.fill_username_field("Nellikoko91@gmail.com")
         loginPageObj.click_to_continue_button()
         loginPageObj.fill_password_button("Korea2022")
-        sleep(6) # to avoid CAPTCHA check
+        sleep(6)  # to avoid CAPTCHA check
         loginPageObj.click_signin_button()
 
     def test_01_negative_login(self):
