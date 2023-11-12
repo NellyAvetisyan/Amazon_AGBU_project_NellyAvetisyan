@@ -1,11 +1,11 @@
-# import logging
-# from selenium.webdriver.support.events import EventFiringWebDriver, AbstractEventListener
+
 from selenium.webdriver.support.events import AbstractEventListener
 from common_.utilities_.customLogger import *
 
 class MyListener(AbstractEventListener):
+
     # def before_navigate_to(self, url, driver):
-    #     print("Before navigating to ", url)
+        # print("Before navigating to ", url)
 
     def after_navigate_to(self, url, driver):
         print("After navigating to ", url)
@@ -28,7 +28,7 @@ class MyListener(AbstractEventListener):
     def after_find(self, by, value, driver):
         logger("INFO", f"After Finding")
         logger("INFO", f"Founded element with locator: By: {by}, Value: {value}")
-
+#
     # def before_click(self, element, driver):
     #     print("before_click")
 

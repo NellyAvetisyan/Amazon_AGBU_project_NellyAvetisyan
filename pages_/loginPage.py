@@ -12,27 +12,18 @@ class LoginPage(BasePage):
         self.__signinButtonLocator = (By.ID, "signInSubmit")
 
     def fill_username_field(self, username):
-        # userNameFieldElement = self._find_element(By.ID, "ap_email")
-        userNameFieldElement = self._find_element(*self.__usernameFieldLocator)
+        userNameFieldElement = self._find_element(self.__usernameFieldLocator)
         self._fill_field(userNameFieldElement, username)
 
     def click_to_continue_button(self):
-        # continueButton = self._find_element(By.ID, "continue")
-        continueButton = self._find_element(*self.__continueButtonLocator)
+        continueButton = self._find_element(self.__continueButtonLocator)
         self._click(continueButton)
 
     def fill_password_button(self, password):
-        # passwordFieldElement = self._find_element(By.ID, "ap_password")
-        passwordFieldElement = self._find_element(*self.__passwordFieldLocator)
+        passwordFieldElement = self._find_element(self.__passwordFieldLocator)
         self._fill_field(passwordFieldElement, password)
 
     def click_signin_button(self):
-        # signinButton = self._find_element(By.ID, "signInSubmit")
-        signinButton = self._find_element(*self.__signinButtonLocator)
+        signinButton = self._find_element(self.__signinButtonLocator)
         self._click(signinButton)
-
-    # def validate_signin_action_result(self):
-    #     self.assertEqual(self.driver.title, )
-
-
 

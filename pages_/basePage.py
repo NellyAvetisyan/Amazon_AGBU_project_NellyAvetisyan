@@ -9,23 +9,13 @@ class BasePage():
     def __init__(self, driver: webdriver.Chrome):
         self.driver = driver
 
-    def _find_element(self, *locator):
-        if self._is_element_visible(*locator):
-            element = self.driver.find_element(*locator)
-            logger("INFO", "Element found")
+    def _find_element(self, locator):
+        try:
+            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(locator))
             return element
-        else:
-            print("ERROR: out of time or  not found")
-            logger("ERROR", "Element not found")
+        except:
+            print("ERROR:Element not found or wrong")
             exit(1)
-
-    # def _find_element(self, locator):
-    #     try:
-    #         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator))
-    #         return element
-    #     except:
-    #         print("ERROR:Element not found or wrong")
-    #         exit(1)
 
     def _is_element_visible(self, locator):
         try:
@@ -39,7 +29,7 @@ class BasePage():
             WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator))
         except:
             print("ERROR: Element should be visible but not")
-            logger("ERROR", "Element shold be visible but not")
+            logger("ERROR", "Element should be visible but not")
             exit(3)
 
     def _click(self, webElement):
@@ -48,17 +38,13 @@ class BasePage():
     def _fill_field(self, webElement, text):
         webElement.clear()
         webElement.send_keys(text)
-        logger.log("INFO", "text successfully added to element")
+        logger("INFO", "text successfully added to element")
 
     def _get_title(self):
         return self.driver.title
 
     def _get_element_text(self, webElement):
         return webElement.text
-
-    def _drag_and_drop(self):
-        # Action Chain
-        pass
 
     def _press_and_hold(self):
         pass
@@ -69,4 +55,3 @@ class BasePage():
 
     def _double_click(self):
         pass
-

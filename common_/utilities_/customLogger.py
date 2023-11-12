@@ -7,7 +7,7 @@ def get_root_dir_name():
     command = "Path(__file__).absolute()"
     while True:
         rootDir = str(eval(command))
-        if rootDir.split(sep="\\")[-1] == "AmazonTestEnvironment":
+        if rootDir.split(sep="\\")[-1] == "Amazon_AGBU_project_NellyAvetisyan":
             return rootDir
         else:
             command += ".parent"
@@ -20,17 +20,12 @@ def logger(level, message, fileName=os.path.join(get_root_dir_name(), '_logs_', 
 
     if level == "INFO":
         logging.info(message)
-        return
-    if level == "DEBUG":
+    elif level == "DEBUG":
         logging.debug(message)
-        return
-    if level == "WARNING":
+    elif level == "WARNING":
         logging.warning(message)
-        return
-    if level == "ERROR":
+    elif level == "ERROR":
         logging.error(message)
-        return
-    if level == "CRITICAL":
+    elif level == "CRITICAL":
         logging.critical(message)
-        return
 

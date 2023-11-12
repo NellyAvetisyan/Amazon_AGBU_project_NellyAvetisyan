@@ -8,6 +8,5 @@ class SelectedProductPage(BasePage):
         self.__addToCartButtonElementLocator = (By.ID, "add-to-cart-button")
 
     def click_add_to_cart_button(self):
-        # addToCartButtonElement = self._find_element(By.ID, "add-to-cart-button")
-        addToCartButtonElement = self._find_element(*self.__addToCartButtonElementLocator)
+        addToCartButtonElement = self._find_element(self.__addToCartButtonElementLocator)
         self._click(addToCartButtonElement)

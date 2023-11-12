@@ -4,6 +4,7 @@ from pages_.loginPage import LoginPage
 from pages_.navigationBar import NavigationBar
 from pages_.cartPage import CartPage
 from pages_.searchResultPage import SearchResultPage
+from pages_.selectedProductPage import SelectedProductPage
 from time import sleep
 
 
@@ -20,9 +21,9 @@ class TestAllSteps(unittest.TestCase):
         loginPageObj.fill_username_field("Nellikoko91@gmail.com")
         loginPageObj.click_to_continue_button()
         loginPageObj.fill_password_button("Korea2022")
-        sleep(10)
-        # to avoid CAPTCHA check
+        sleep(10) # to avoid CAPTCHA check
         loginPageObj.click_signin_button()
+
     def test_steps_to_check_func(self):
 
         navigationBarObj = NavigationBar(self.driver)
@@ -36,6 +37,15 @@ class TestAllSteps(unittest.TestCase):
 
         searchResultPaeObj = SearchResultPage(self.driver)
         searchResultPaeObj.click_to_first_product()
+
+        self.assertEqual(self.driver.title, "Amazon.com : candles")
+        # just assertion using example, only for this product search
+
+        selectedProductObj = SelectedProductPage(self.driver)
+        selectedProductObj.click_add_to_cart_button()
+
+        cartCountNumber = int(navigationBarObj.cart_count_element_text())
+        self.assertEqual(cartCountNumber, cartCountNumber + 1)
 
     def tearDown(self):
         self.driver.close()

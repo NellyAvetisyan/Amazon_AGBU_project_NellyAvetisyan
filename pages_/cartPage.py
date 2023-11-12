@@ -8,7 +8,6 @@ class CartPage(BasePage):
         self.__firstProductDeleteButtonLocator = (By.XPATH, "(//input[@value='Delete'])[1]")
 
     def delete_first_product(self):
-        # firstProductDeleteButton = self._find_element(By.XPATH, "(//input[@value='Delete'])[1]")
-        firstProductDeleteButton = self._find_element(*self.__firstProductDeleteButtonLocator)
+        firstProductDeleteButton = self._find_element(self.__firstProductDeleteButtonLocator)
         self._click(firstProductDeleteButton)
 
