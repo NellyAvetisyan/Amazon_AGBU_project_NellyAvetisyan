@@ -1,38 +1,48 @@
 from selenium.webdriver.common.by import By
 from pages_.basePage import BasePage
 
-class NavigationBar(BasePage):
 
+class NavigationBar(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
-        self.__cartButtonElementLocator = (By.ID, "nav-cart-text-container")
-        self.__searchFieldElementLocator = (By.ID, "twotabsearchtextbox")
+        self.__cartButtonLocator = (By.ID, "nav-cart-text-container")
+        self.__searchFieldLocator = (By.ID, "twotabsearchtextbox")
         self.__searchSubmitButtonLocator = (By.ID, "nav-search-submit-button")
-        self.__allButtonElementLocator = (By.ID, "nav-hamburger-menu")
-        self.__bestSellersButtonElementLocator = (By.XPATH, "(//a[@class='hmenu-item'])[1]")
-        self.__cartCountNumberElementLocator = (By.ID, "nav-cart-count")
-
+        self.__allHamburgMenuButtonLocator = (By.ID, "nav-hamburger-menu")
+        self.__deliverToButtonLocator = (By.ID, "glow-ingress-block")
+        self.__languageChangeButtonLocator = (By.CLASS_NAME, "icp-nav-link-inner")
+        self.__accountAndListButtonLocator = (By.ID, "nav-link-accountList")
+        self.__cartCountLocator = (By.ID, "nav-cart-count")
 
     def click_to_cart_button(self):
-        cartButtonElement = self._find_element(self.__cartButtonElementLocator)
+        cartButtonElement = self._find_element(self.__cartButtonLocator)
         self._click(cartButtonElement)
 
     def fill_search_field(self, product):
-        searchFieldElement = self._find_element(self.__searchFieldElementLocator)
+        searchFieldElement = self._find_element(self.__searchFieldLocator)
         self._fill_field(searchFieldElement, product)
 
     def click_to_search_submit_button(self):
-        searchSubmitButton = self._find_element(self.__searchSubmitButtonLocator)
-        self._click(searchSubmitButton)
+        searchSubmitButtonElement = self._find_element(self.__searchSubmitButtonLocator)
+        self._click(searchSubmitButtonElement)
 
-    def click_to_all_button(self):
-        allButtonElement = self._find_element(self.__allButtonElementLocator)
-        self._click(allButtonElement)
+    def click_to_all_hamburg_menu_button(self):
+        allHamburgMenuButtonElement = self._find_element(self.__allHamburgMenuButtonLocator)
+        self._click(allHamburgMenuButtonElement)
 
-    def click_to_best_sellers_button(self):
-        bestSellersButtonElement = self._find_element(self.__bestSellersButtonElementLocator)
-        self._click(bestSellersButtonElement)
+    def get_cart_count(self):
+        cartCountElement = self._find_element(self.__cartCountLocator)
+        return int(self._get_element_text(cartCountElement))
 
-    def cart_count_element_text(self):
-        cartCountNumber = self._find_element(self.__cartCountNumberElementLocator)
-        self._get_element_text(cartCountNumber)
+    def click_to_deliver_to_button(self):
+        deliverToButtonElement = self._find_element(self.__deliverToButtonLocator)
+        self._click(deliverToButtonElement)
+
+    def move_to_language_change_button(self):
+        languageChangeButtonElement = self._find_element(self.__languageChangeButtonLocator)
+        self._mouse_move(languageChangeButtonElement)
+
+    def move_to_account_and_lists_button(self):
+        accountAndListButtonElement = self._find_element(self.__accountAndListButtonLocator)
+        self._mouse_move(accountAndListButtonElement)
+

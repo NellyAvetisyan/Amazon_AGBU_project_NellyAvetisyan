@@ -1,11 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.common.action_chains import ActionChains
 from common_.utilities_.customLogger import *
 
-class BasePage():
 
+class BasePage():
     def __init__(self, driver: webdriver.Chrome):
         self.driver = driver
 
@@ -44,6 +44,7 @@ class BasePage():
         return self.driver.title
 
     def _get_element_text(self, webElement):
+        logger("INFO", "text successfully found")
         return webElement.text
 
     def _press_and_hold(self):
@@ -55,3 +56,8 @@ class BasePage():
 
     def _double_click(self):
         pass
+
+    def _mouse_move(self, element):
+        action = ActionChains(self.driver)
+        action.move_to_element(element)
+        action.perform()

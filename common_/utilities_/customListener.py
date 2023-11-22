@@ -2,28 +2,28 @@
 from selenium.webdriver.support.events import AbstractEventListener
 from common_.utilities_.customLogger import *
 
+
 class MyListener(AbstractEventListener):
+    def before_navigate_to(self, url, driver):
+        print("Before navigating to ", url)
 
-    # def before_navigate_to(self, url, driver):
-        # print("Before navigating to ", url)
+    def after_navigate_to(self, url, driver):
+        print("After navigating to ", url)
 
-    # def after_navigate_to(self, url, driver):
-    #     print("After navigating to ", url)
-    #
-    # # def before_navigate_back(self, driver):
-    # #     print("before navigating back ", driver.current_url)
-    #
-    # def after_navigate_back(self, driver):
-    #     print("After navigating back ", driver.current_url)
-    #
-    # # def before_navigate_forward(self, driver):
-    # #     print("before navigating forward ", driver.current_url)
-    #
-    # def after_navigate_forward(self, driver):
-    #     print("After navigating forward ", driver.current_url)
-    #
-    # # def before_find(self, by, value, driver):
-    # #     print("before find")
+    # def before_navigate_back(self, driver):
+    #     print("before navigating back ", driver.current_url)
+
+    def after_navigate_back(self, driver):
+        print("After navigating back ", driver.current_url)
+
+    # def before_navigate_forward(self, driver):
+    #     print("before navigating forward ", driver.current_url)
+
+    def after_navigate_forward(self, driver):
+        print("After navigating forward ", driver.current_url)
+
+    # def before_find(self, by, value, driver):
+    #     print("before find")
 
     def after_find(self, by, value, driver):
         logger("INFO", f"After Finding")

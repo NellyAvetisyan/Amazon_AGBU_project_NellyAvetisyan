@@ -1,37 +1,40 @@
-import unittest
-from selenium import webdriver
 from pages_.loginPage import LoginPage
 from time import sleep
-from selenium.webdriver.support.events import EventFiringWebDriver
-from common_.utilities_.customListener import MyListener
+from testData_.testData import validUser, userWithInvalidPassword, userWithInvalidUsername
+from tests_.baseTest import BaseTest
 
 
-class LogIn(unittest.TestCase):
-
-    def setUp(self):
-        self.simpledriver = webdriver.Chrome()
-        self.driver = EventFiringWebDriver(self.simpledriver, MyListener())
-        self.driver.implicitly_wait(10)
-        self.driver.maximize_window()
-        self.driver.delete_all_cookies()
-        self.driver.get("https://www.amazon.com/ap/signin?openid.pape.max_auth_age=900&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fyourstore%2Fhome%3Fpath%3D%252Fgp%252Fyourstore%252Fhome%26signIn%3D1%26useRedirectOnSuccess%3D1%26action%3Dsign-out%26ref_%3Dnav_AccountFlyout_signout&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0")
-
+class LogIn(BaseTest):
     def test_01_positive_login(self):
-        loginPageObj = LoginPage(self.simpledriver)
-        loginPageObj.fill_username_field("Nellikoko91@gmail.com")
+        loginPageObj = LoginPage(self.simpleDriver)
+        loginPageObj.fill_username_field(validUser.username)
         loginPageObj.click_to_continue_button()
-        loginPageObj.fill_password_button("Korea2022")
+        loginPageObj.fill_password_field(validUser.password)
         sleep(6)  # to avoid CAPTCHA check
-        loginPageObj.click_signin_button()
+        loginPageObj.click_to_signin_button()
+        sleep(20)  # To get the title of opened page
+
+        self.assertEqual(self.driver.title, 'Amazon.com. Spend less. Smile more.')
 
     def test_01_negative_login(self):
-        loginPageObj = LoginPage(self.simpledriver)
-        loginPageObj.fill_username_field("Nellikoko91@gmail.com")
+        loginPageObj = LoginPage(self.simpleDriver)
+        loginPageObj.fill_username_field(userWithInvalidPassword.username)
         loginPageObj.click_to_continue_button()
-        loginPageObj.fill_password_button("12345678")
-        loginPageObj.click_signin_button()
+        loginPageObj.fill_password_field(userWithInvalidPassword.password)
+        loginPageObj.click_to_signin_button()
+        sleep(20)
 
-        self.assertEquals(self.driver.title, "Amazon.com. Spend less. Smile more.")
+        # self.assertEqual(self.driver.title, "Amazon Sign-In")
+        invalidPasswordMessage = loginPageObj.get_text_of_invalid_password_message()
+        self.assertEqual(invalidPasswordMessage, "Your password is incorrect")
 
-    def tearDown(self):
-        self.driver.close()
+    def test_02_negative_login(self):
+        loginPageObj = LoginPage(self.simpleDriver)
+        loginPageObj.fill_username_field(userWithInvalidUsername.username)
+        loginPageObj.click_to_continue_button()
+        sleep(10)  # to be able to get the text locator
+
+        invalidUsernameMessage = loginPageObj.get_text_of_invalid_username_message()
+        self.assertEqual(invalidUsernameMessage, "We cannot find an account with that email address")
+        # print("There was a problem. We cannot find an account with that email address/mobile number")
+
