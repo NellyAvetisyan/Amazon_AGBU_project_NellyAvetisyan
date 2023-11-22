@@ -10,3 +10,4 @@ class HamburgMenuLeftSideOpenedPage(BasePage):
     def click_to_best_sellers_button(self):
         bestSellersButtonElement = self._find_element(self.__bestSellersButtonLocator)
         self._click(bestSellersButtonElement)
+

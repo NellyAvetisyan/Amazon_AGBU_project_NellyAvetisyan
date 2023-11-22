@@ -1,13 +1,8 @@
-import unittest
-from selenium import webdriver
-from pages_.loginPage import LoginPage
 from pages_.navigationBar import NavigationBar
 from pages_.cartPage import CartPage
 from pages_.searchResultPage import SearchResultPage
 from pages_.selectedProductDetailPage import SelectedProductDetailPage
-from time import sleep
-from selenium.webdriver.support.events import EventFiringWebDriver
-from common_.utilities_.customListener import MyListener
+
 from tests_.baseTest import BaseTestwithLoginSteps
 
 
@@ -34,7 +29,7 @@ class TestSearchingAddToCartDeleteFunctionalities(BaseTestwithLoginSteps):
 
         # cartNumberCountBeforeAddToCart = int(navigationBarObj.get_cart_count_element_text())
 
-        cartPageObj = CartPage(self.simpledriver)
+        cartPageObj = CartPage(self.simpleDriver)
         cartPageObj.delete_first_product_from_cart()
 
         # cartNumberCountAfterAddToCart = int(navigationBarObj.get_cart_count_element_text())
